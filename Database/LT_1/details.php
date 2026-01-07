@@ -1,16 +1,14 @@
 <?php
-// details.php
-
-// connect
+ 
 $conn = new mysqli("localhost", "root", "", "bookstore_db");
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// book id from URL
+ 
 $id = $_GET["id"] ?? 0;
 
-// get selected book
+ 
 $stmt = $conn->prepare(
     "SELECT book_id, title, author, isbn, price, category, stock_quantity, publication_year
      FROM books
@@ -21,8 +19,7 @@ $stmt->execute();
 $book_result = $stmt->get_result();
 $book = $book_result->fetch_assoc();
 $stmt->close();
-
-// if book found, get related books (same category, different id)
+ 
 $related = null;
 if ($book) {
     $cat = $book["category"];

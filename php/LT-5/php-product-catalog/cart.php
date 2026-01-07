@@ -1,7 +1,6 @@
 <?php
 session_start();
-
-// 4. c) Handle updates and removals
+ 
 if (isset($_POST['update'])) {
     foreach ($_POST['qty'] as $id => $q) {
         if ($q <= 0) unset($_SESSION['cart'][$id]);
@@ -12,7 +11,7 @@ if (isset($_GET['remove'])) {
     unset($_SESSION['cart'][$_GET['remove']]);
 }
 
-// Re-define product list for name/price lookup
+ 
 $products = [1 => ['name'=>'Laptop','price'=>800], 2 => ['name'=>'Phone','price'=>500], 3 => ['name'=>'Headphones','price'=>100], 4 => ['name'=>'Monitor','price'=>200], 5 => ['name'=>'Keyboard','price'=>50]];
 ?>
 

@@ -1,7 +1,5 @@
 <?php
-// add_book.php (very simple)
-
-// Connect to database
+ 
 $conn = new mysqli("localhost", "root", "", "bookstore_db");
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -18,11 +16,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stock  = $_POST["stock_quantity"];
     $year   = $_POST["publication_year"];
 
-    // price must be positive
+    
     if ($price <= 0) {
         $msg = "Price must be positive.";
     } else {
-        // check duplicate ISBN
+         
         $check = $conn->prepare("SELECT book_id FROM books WHERE isbn = ?");
         $check->bind_param("s", $isbn);
         $check->execute();
@@ -31,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($check->num_rows > 0) {
             $msg = "ISBN already exists.";
         } else {
-            // insert book
+             
             $stmt = $conn->prepare(
                 "INSERT INTO books (title, author, isbn, price, category, stock_quantity, publication_year)
                  VALUES (?, ?, ?, ?, ?, ?, ?)"

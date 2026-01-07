@@ -4,12 +4,12 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// get employees for dropdown
+ 
 $emp_list = $conn->query(
     "SELECT emp_id, first_name, last_name FROM employees ORDER BY first_name"
 );
 
-// form values
+ 
 $emp_id    = $_GET["emp_id"]    ?? "";
 $from_date = $_GET["from_date"] ?? "";
 $to_date   = $_GET["to_date"]   ?? "";
@@ -41,14 +41,14 @@ $stmt->bind_param($types, ...$params);
 $stmt->execute();
 $result = $stmt->get_result();
 
-// counters for statistic
+ 
 $total = 0;
 $present = 0;
 $absent = 0;
 $late = 0;
 $half = 0;
 
-// to calculate while reading rows, store rows in array
+ 
 $rows = [];
 while ($row = $result->fetch_assoc()) {
     $rows[] = $row;

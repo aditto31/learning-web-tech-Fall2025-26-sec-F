@@ -1,10 +1,5 @@
 <?php
-/**
- * 1. Implement Functions First
- * We define these once at the top to avoid "Redeclare" errors.
- */
-
-// Function to calculate discounted prices based on category
+ 
 function getDiscountedPrice($price, $category, $discounts) {
     if (isset($discounts[$category])) {
         $reduction = $price * ($discounts[$category] / 100);
@@ -13,7 +8,7 @@ function getDiscountedPrice($price, $category, $discounts) {
     return $price;
 }
 
-// Function to find the most expensive product in the array
+  
 function findMostExpensive($inventory) {
     $expensive = $inventory[0];
     foreach ($inventory as $product) {
@@ -24,11 +19,7 @@ function findMostExpensive($inventory) {
     return $expensive;
 }
 
-/**
- * 2. Define Data Structures
- */
-
-// Associative array with at least 5 products
+ 
 $inventory = [
     ["name" => "Laptop", "price" => 1000, "quantity" => 5, "category" => "Electronics"],
     ["name" => "Smartphone", "price" => 700, "quantity" => 10, "category" => "Electronics"],
@@ -37,20 +28,18 @@ $inventory = [
     ["name" => "Gaming Mouse", "price" => 80, "quantity" => 12, "category" => "Electronics"]
 ];
 
-// Indexed array with discount percentages for different categories
+ 
 $discounts = [
-    "Electronics" => 10, // 10% discount
-    "Furniture" => 15,   // 15% discount
-    "Decor" => 5         // 5% discount
+    "Electronics" => 10,  
+    "Furniture" => 15,    
+    "Decor" => 5         
 ];
 
-/**
- * 3. Perform Calculations
- */
+ 
 
 $totalInventoryValue = 0;
 foreach ($inventory as $item) {
-    // Total value = price * quantity
+   
     $totalInventoryValue += ($item['price'] * $item['quantity']);
 }
 

@@ -1,11 +1,11 @@
 <?php
-// Initialize variables and error array
+ 
 $errors = [];
 $success_message = "";
 
-// Use isset() to check if the form was submitted
+ 
 if (isset($_POST['register'])) {
-    // Retrieve data using $_POST
+    
     $full_name = trim($_POST['full_name'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $username = trim($_POST['username'] ?? '');
@@ -16,49 +16,47 @@ if (isset($_POST['register'])) {
     $course = $_POST['course'] ?? '';
     $terms = isset($_POST['terms']);
 
-    // --- PHP VALIDATION (8+ Validations) ---
 
-    // 1. All fields must not be empty
     if (empty($full_name) || empty($email) || empty($username) || empty($password) || empty($age) || empty($gender) || empty($course)) {
         $errors[] = "All fields are required.";
     }
 
-    // 2. Full Name: letters and spaces only
+     
     if (!empty($full_name) && !preg_match("/^[a-zA-Z ]*$/", $full_name)) {
         $errors[] = "Full Name must contain only letters and spaces.";
     }
 
-    // 3. Email format
+    
     if (!empty($email) && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errors[] = "Email must be a valid email format.";
     }
 
-    // 4. Username length (min 5)
+     
     if (!empty($username) && strlen($username) < 5) {
         $errors[] = "Username must be at least 5 characters long.";
     }
 
-    // 5. Password length (min 6)
+     
     if (!empty($password) && strlen($password) < 6) {
         $errors[] = "Password must be at least 6 characters long.";
     }
 
-    // 6. Password match
+     
     if ($password !== $confirm_password) {
         $errors[] = "Password and Confirm Password must match.";
     }
 
-    // 7. Age (18 or above)
+     
     if (!empty($age) && intval($age) < 18) {
         $errors[] = "Age must be 18 or above.";
     }
 
-    // 8. Terms & Conditions checkbox
+     
     if (!$terms) {
         $errors[] = "Terms & Conditions checkbox must be checked.";
     }
 
-    // Output logic: success or clear error messages
+    
     if (empty($errors)) {
         $success_message = "Registration Successful!";
     }

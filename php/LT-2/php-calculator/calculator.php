@@ -1,22 +1,17 @@
 <?php
-// Initialize variables for results and errors
 $result = "";
 $error = "";
 
-// 3. Add PHP logic: Capture POST data
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $num1 = $_POST['num1'];
     $num2 = $_POST['num2'];
     $operation = $_POST['operation'];
 
-    // 3. b) Validate numbers are numeric
     if (is_numeric($num1) && is_numeric($num2)) {
-        // 3. c) Perform selected operation
         if ($operation == "+") $result = $num1 + $num2;
         if ($operation == "-") $result = $num1 - $num2;
         if ($operation == "*") $result = $num1 * $num2;
         if ($operation == "/") {
-            // 3. d) Handle division by zero error
             if ($num2 == 0) {
                 $error = "Error: Cannot divide by zero.";
             } else {

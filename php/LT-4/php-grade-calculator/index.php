@@ -8,7 +8,7 @@ if (isset($_POST['calculate'])) {
     $total = 0;
     $valid = true;
 
-    // Validation: Check all fields filled and marks between 0-100
+     
     foreach ($marks as $mark) {
         if ($mark === "" || $mark < 0 || $mark > 100) {
             $valid = false;
@@ -20,14 +20,14 @@ if (isset($_POST['calculate'])) {
     if ($valid && !empty($name)) {
         $average = $total / 5;
         
-        // Determine Grade (A: 90+, B: 80-89, etc.)
+        
         if ($average >= 90) $grade = "A";
         elseif ($average >= 80) $grade = "B";
         elseif ($average >= 70) $grade = "C";
         elseif ($average >= 60) $grade = "D";
         else $grade = "F";
 
-        // Store result in session
+         
         $_SESSION['grades'][] = ['name' => $name, 'total' => $total, 'avg' => $average, 'grade' => $grade];
 
         $result_output = "<h3>Result for $name</h3>

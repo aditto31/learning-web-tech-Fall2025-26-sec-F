@@ -1,16 +1,13 @@
 <?php
-// Variables for messages
 $errors = [];
 $success = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // 1. Sanitize input data
     $name = htmlspecialchars($_POST['name']);
     $email = htmlspecialchars($_POST['email']);
     $pass = $_POST['password'];
     $confirm = $_POST['confirm_password'];
 
-    // 2. PHP Validation
     if (empty($name) || empty($email) || empty($pass) || empty($confirm)) {
         $errors[] = "All fields are required.";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -19,7 +16,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors[] = "Passwords do not match.";
     }
 
-    // 3. If validation passes
     if (empty($errors)) {
         $success = "Registration Successful!";
     }

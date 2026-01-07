@@ -1,7 +1,5 @@
 <?php
-// mark_attendance.php (super simple)
-
-// connect to database
+ 
 $conn = new mysqli("localhost", "root", "", "company_db");
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -9,7 +7,7 @@ if ($conn->connect_error) {
 
 $msg = "";
 
-// when form is submitted
+ 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $emp_id    = $_POST["emp_id"];
     $date      = $_POST["date"];
@@ -17,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $check_out = $_POST["check_out_time"];
     $status    = $_POST["status"];
 
-    // check duplicate (same employee + date)
+  
     $check = $conn->prepare(
         "SELECT attendance_id FROM attendance WHERE emp_id = ? AND date = ?"
     );
@@ -28,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($check->num_rows > 0) {
         $msg = "Already marked for this employee on this date.";
     } else {
-        // insert new attendance row
+       
         $stmt = $conn->prepare(
             "INSERT INTO attendance (emp_id, date, check_in_time, check_out_time, status)
              VALUES (?, ?, ?, ?, ?)"
@@ -47,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $check->close();
 }
 
-// get employees for dropdown (simple query)
+ 
 $emp_list = $conn->query(
     "SELECT emp_id, first_name, last_name FROM employees ORDER BY first_name"
 );

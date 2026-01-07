@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// 3. a) Array of 5-6 products
+ 
 $products = [
     ['id' => 1, 'name' => 'Laptop', 'price' => 800, 'image' => 'laptop.jpg'],
     ['id' => 2, 'name' => 'Phone', 'price' => 500, 'image' => 'phone.jpg'],
@@ -10,10 +10,10 @@ $products = [
     ['id' => 5, 'name' => 'Keyboard', 'price' => 50, 'image' => 'keys.jpg']
 ];
 
-// 3. c) Handle add-to-cart via POST
+ 
 if (isset($_POST['add_to_cart'])) {
     $id = $_POST['product_id'];
-    // 3. d) Store cart in session
+     
     $_SESSION['cart'][$id] = ($_SESSION['cart'][$id] ?? 0) + 1;
     echo "<script>alert('Product added!');</script>";
 }

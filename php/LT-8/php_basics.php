@@ -1,8 +1,6 @@
 
 <?php
-/**
- * PART A: PHP Variables and Output
- */
+ 
 $name = "ADitto";
 $studentID = "12345";
 $department = "Computer Science";
@@ -12,9 +10,7 @@ echo "Name: " . $name . "<br>";
 echo "ID: " . $studentID . "<br>";
 echo "Department: " . $department . "<hr>";
 
-/**
- * PART B: Arithmetic and Type Casting
- */
+ 
 $num1 = 15;
 $num2 = 4;
 
@@ -24,7 +20,7 @@ echo "Subtraction: " . ($num1 - $num2) . "<br>";
 echo "Multiplication: " . ($num1 * $num2) . "<br>";
 echo "Division: " . ($num1 / $num2) . "<br>";
 
-// Type Casting
+ 
 $stringNumeric = "100";
 $floatNum = 45.75;
 
@@ -32,9 +28,7 @@ echo "<br>Type Casting:<br>";
 echo "String to Integer: " . (int)$stringNumeric . "<br>";
 echo "Float to Integer: " . (int)$floatNum . "<hr>";
 
-/**
- * PART C: Control Flow
- */
+ 
 $marks = 72;
 
 echo "<h2>Part C: Control Flow (Grade)</h2>";
@@ -49,9 +43,7 @@ if ($marks >= 80) {
 }
 echo "<hr>";
 
-/**
- * PART D: Loops
- */
+ 
 echo "<h2>Part D: Loops</h2>";
 echo "For Loop (1 to 10): ";
 for ($i = 1; $i <= 10; $i++) {
@@ -68,19 +60,17 @@ while ($j <= 20) {
 }
 echo "<hr>";
 
-/**
- * PART E: Arrays
- */
+ 
 echo "<h2>Part E: Arrays</h2>";
 
-// Indexed Array
+ 
 $languages = ["PHP", "JavaScript", "Python", "Java", "C++"];
 echo "Favorite Programming Languages: ";
 foreach ($languages as $lang) {
     echo $lang . " ";
 }
 
-// Associative Array
+ 
 $user = [
     "Name" => "ADitto Mirza",
     "Email" => "aditto@aiub.com",
@@ -93,9 +83,7 @@ foreach ($user as $key => $value) {
 }
 echo "<hr>";
 
-/**
- * PART F: User-Defined Function
- */
+ 
 function calculateSquare($number) {
     return $number * $number;
 }

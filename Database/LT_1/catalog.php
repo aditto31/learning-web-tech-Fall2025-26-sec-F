@@ -1,19 +1,17 @@
 <?php
-// catalog.php
-
-// 1. Connect to database
+ 
 $conn = new mysqli("localhost", "root", "", "bookstore_db");
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// 2. Pagination setup
+ 
 $books_per_page = 10;
 $page = isset($_GET["page"]) ? (int) $_GET["page"] : 1;
 if ($page < 1) { $page = 1; }
 $offset = ($page - 1) * $books_per_page;
 
-// 3. Count total books
+ 
 $count_sql = "SELECT COUNT(*) FROM books";
 $count_stmt = $conn->prepare($count_sql);
 $count_stmt->execute();
@@ -23,7 +21,7 @@ $count_stmt->close();
 
 $total_pages = ceil($total_books / $books_per_page);
 
-// 4. Get books for this page
+ 
 $sql = "SELECT book_id, title, author, price, stock_quantity FROM books
         ORDER BY title
         LIMIT ? OFFSET ?";
@@ -48,7 +46,7 @@ $result = $stmt->get_result();
 
 <?php while ($row = $result->fetch_assoc()): ?>
     <div class="book">
-        <!-- Placeholder image -->
+         
         <img src="https://via.placeholder.com/80x100?text=Book" alt="Book image">
         <div>
             <strong><?php echo htmlspecialchars($row["title"]); ?></strong><br>
@@ -68,7 +66,7 @@ $result = $stmt->get_result();
 
 <?php $stmt->close(); $conn->close(); ?>
 
-<!-- 5. Pagination links -->
+ 
 <div>
     <?php if ($page > 1): ?>
         <a href="?page=<?php echo $page - 1; ?>">Previous</a>

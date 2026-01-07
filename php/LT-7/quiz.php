@@ -1,5 +1,5 @@
 <?php
-// Store correct answers in an array
+ 
 $correct_answers = [
     'q1' => 'PHP: Hypertext Preprocessor',
     'q2' => '$_POST',
@@ -16,7 +16,7 @@ $submitted = false;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $submitted = true;
     
-    // Compare user answers with correct answers using loops
+  
     foreach ($correct_answers as $key => $correct_val) {
         $user_answer = $_POST[$key] ?? 'Not answered';
         if ($user_answer === $correct_val) {
@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $percentage = ($score / count($correct_answers)) * 100;
 
-    // Use switch statement to provide grade-based feedback
+    
     switch (true) {
         case ($percentage >= 90): $feedback = "Excellent"; break;
         case ($percentage >= 70): $feedback = "Good"; break;

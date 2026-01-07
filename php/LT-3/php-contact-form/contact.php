@@ -1,38 +1,31 @@
 <?php
-// Initialize variables
 $errors = [];
 $success_msg = "";
 $submitted_data = [];
 
 if (isset($_POST['submit'])) {
-    // 1. Sanitize all inputs
     $name    = htmlspecialchars(trim($_POST['name']));
     $email   = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
     $subject = htmlspecialchars($_POST['subject']);
     $message = htmlspecialchars(trim($_POST['message']));
 
-    // 2. Validate all required fields
     if (empty($name) || empty($email) || empty($message)) {
         $errors[] = "Please fill in all required fields.";
     }
 
-    // 3. Check email format with filter_var()
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errors[] = "Invalid email format.";
     }
 
-    // 4. Message length check (min 10 characters)
     if (strlen($message) < 10) {
         $errors[] = "Message must be at least 10 characters long.";
     }
 
-    // 5. Validate file attachment if uploaded
     if (!empty($_FILES['attachment']['name'])) {
         $file_size = $_FILES['attachment']['size'];
         $file_type = $_FILES['attachment']['type'];
         $allowed_types = ['image/jpeg', 'image/png', 'application/pdf'];
 
-        // Limit size to 2MB (example) and check type
         if (!in_array($file_type, $allowed_types)) {
             $errors[] = "Only JPG, PNG, and PDF files are allowed.";
         }
@@ -41,9 +34,8 @@ if (isset($_POST['submit'])) {
         }
     }
 
-    // 6. If no errors, show data and simulate email
     if (empty($errors)) {
-        $success_msg = "Email sent successfully!"; // Simulated
+        $success_msg = "Email sent successfully!"; 
         $submitted_data = [
             'Name' => $name,
             'Email' => $email,

@@ -12,5 +12,4 @@ if (!$conn) {
 
 echo "Database connected successfully.";
 
-//mysqli_close($conn);
 ?>

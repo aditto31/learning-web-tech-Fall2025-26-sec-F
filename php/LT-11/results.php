@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// 5. c) Option to clear results
+ 
 if (isset($_GET['clear'])) {
     unset($_SESSION['all_results']);
     header("Location: results.php");

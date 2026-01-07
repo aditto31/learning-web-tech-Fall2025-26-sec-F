@@ -1,27 +1,25 @@
 <?php
-// search.php
-
-// connect
+ 
 $conn = new mysqli("localhost", "root", "", "bookstore_db");
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// for category dropdown
+ 
 $cat_result = $conn->query("SELECT DISTINCT category FROM books ORDER BY category");
 
-// form values
+ 
 $keyword   = $_GET["keyword"]   ?? "";
 $category  = $_GET["category"]  ?? "";
 $min_price = $_GET["min_price"] ?? "";
 $max_price = $_GET["max_price"] ?? "";
 
-// build query
+ 
 $sql = "SELECT title, author, price, category FROM books WHERE 1";
 $params = [];
 $types  = "";
 
-// search by title or author
+ 
 if ($keyword != "") {
     $sql .= " AND (title LIKE ? OR author LIKE ?)";
     $like = "%" . $keyword . "%";
@@ -30,14 +28,14 @@ if ($keyword != "") {
     $types .= "ss";
 }
 
-// filter by category
+ 
 if ($category != "") {
     $sql .= " AND category = ?";
     $params[] = $category;
     $types .= "s";
 }
 
-// filter by price range
+ 
 if ($min_price !== "") {
     $sql .= " AND price >= ?";
     $params[] = $min_price;

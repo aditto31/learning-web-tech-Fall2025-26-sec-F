@@ -1,7 +1,7 @@
 <?php
-session_start(); // Start the session
+session_start(); 
 
-// Check if session variable exists; if not, redirect to login
+ 
 if (!isset($_SESSION['user'])) {
     header("Location: login.php");
     exit;
